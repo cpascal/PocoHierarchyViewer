@@ -5,6 +5,7 @@ const SplitPane = require('react-split-pane')
 
 const IconButton = require('../util/IconButton')
 const TreeUtil = require('../util/TreeUtil')
+const ObjectTreeUtil = require('../util/ObjectTreeUtil')
 const Misc = require('../util/misc')
 const MouseoverComponent = require('../util/mouseover')
 const PopoverModal = require('../util/PopoverModal')
@@ -609,6 +610,8 @@ export class InspectorPanel extends React.Component {
         if (node.name === undefined) {
             return
         }
+        let path = ObjectTreeUtil.getPath(node)
+        console.log(path)
         if (this.state.hierarchyCursor) {
             let cursor = this.state.hierarchyTreeNodeMap[this.state.hierarchyCursor.uuid]
             if (cursor) {

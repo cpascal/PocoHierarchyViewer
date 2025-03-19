@@ -1,5 +1,5 @@
 
-export let ObjectTreeUtil = {}
+let ObjectTreeUtil = {}
 
 // build Object structuralized tree from a list of paths
 ObjectTreeUtil.structuralize = (flat, delimiter='/') => {
@@ -39,3 +39,14 @@ ObjectTreeUtil.seek = (node, path, delimiter='/') => {
     return ret
 }
 
+ObjectTreeUtil.getPath = (node) => {
+    let pathList = []
+    while (node != null) {
+        pathList.push(node.name);
+        node = node.parent;
+    }
+    pathList.reverse();
+    return pathList.join('/');
+}
+
+module.exports = ObjectTreeUtil

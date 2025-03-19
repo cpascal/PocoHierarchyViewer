@@ -207,8 +207,8 @@ const convertNodePosToRenderPos = (x, y, w, h, ax, ay, _sx, _sy) => {
     w *= _sx
     h *= _sy
     let bound = {
-        left: (x - w * ax), 
-        top: (y - h * ay),
+        left: x - w * 0.5, 
+        top: y - h * 0.5,
         width: w,
         height: h,
     }
@@ -291,7 +291,7 @@ class NodeMask extends React.Component {
         let mask = this.props.mask || {}
         let fill = mask.fill || 'rgba(255,244,0,0.2)'
         let stroke = mask.stroke || 'lightgreen'
-        let anchorPos = {left: pos[0] * this.props.paneWidth - 1 + 'px', top: pos[1] * this.props.paneHeight - 1 + 'px'}  // 这点往左上角偏移一个像素
+        let anchorPos = {left: (pos[0] + (anchorPoint[0] - 0.5) * size[0]) * this.props.paneWidth - 1 + 'px', top: (pos[1] + (anchorPoint[1] - 0.5) * size[1]) * this.props.paneHeight - 1 + 'px'}  // 这点往左上角偏移一个像素
 
         return <div>
             {this.props.showLable && <div ref={r => this.ref_infoTips = r} style={style}>

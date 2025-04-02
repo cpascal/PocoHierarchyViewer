@@ -610,8 +610,8 @@ export class InspectorPanel extends React.Component {
         if (node.name === undefined) {
             return
         }
-        let path = ObjectTreeUtil.getPath(node)
-        console.log(path)
+        let nodePath = ObjectTreeUtil.getPath(node)
+        console.log(nodePath)
         if (this.state.hierarchyCursor) {
             let cursor = this.state.hierarchyTreeNodeMap[this.state.hierarchyCursor.uuid]
             if (cursor) {
@@ -758,6 +758,7 @@ export class InspectorPanel extends React.Component {
     render() {
         let cursor = this.state.hierarchyCursor
         let screen = this.state.screen
+        let cursorPath = ObjectTreeUtil.getPath(cursor)
 
         // hierarchy tree filter: search/conditions
         let tree = this.state.hierarchyTree
@@ -794,7 +795,7 @@ export class InspectorPanel extends React.Component {
         const attributePane = <div ref={r => this.ref_attributePane = r}> 
             {!!cursor && <div style={{padding: '3px'}}>
                 <div style={{marginTop: '3px'}}>
-                    <ObjectInspector theme="chromeDark" data={cursor.payload} name={cursor.name} expandLevel={1} />
+                    <ObjectInspector theme="chromeDark" data={cursor.payload} name={cursorPath} expandLevel={1} />
                 </div>
             </div>}
         </div>
